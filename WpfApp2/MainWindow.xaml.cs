@@ -25,6 +25,7 @@ namespace WpfApp2
 {
     public partial class MainWindow : Window
     {
+        private bool isok = true;
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public MemoryStream TakeScreenShot()
         {
@@ -93,9 +94,22 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            Task.Run(() => { Connection1(); });
-            //Connection1();
-            //SendMessage();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (isok)
+            {
+                Task t1 = new Task(Connection1, TaskCreationOptions.LongRunning);
+                t1.Start();
+                isok = false;
+            }
+            
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

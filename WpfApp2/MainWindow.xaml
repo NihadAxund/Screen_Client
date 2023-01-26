@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="60" WindowStyle="None" AllowsTransparency="True" Width="250" Background="{x:Null}" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.8*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Background="#66390189">
+            <Button Width="110" Height="40"  Background="#7F060A4B" Foreground="#FFFCFCFC" FontFamily="Arial Black" Click="Button_Click" FontSize="20">Start</Button>
+            
+        </Grid>
     </Grid>
 </Window>
