@@ -26,6 +26,7 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         private bool isok = true;
+        IPAddress IPAd { get; set; }
         Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         public MemoryStream TakeScreenShot()
         {
@@ -75,9 +76,9 @@ namespace WpfApp2
         {
             try
             {
-                var IPAddres = IPAddress.Loopback;
+                IPAd =  IPAddress.Loopback;
                 var port = 27009;
-                var op = new IPEndPoint(IPAddres, port);
+                var op = new IPEndPoint(IPAd, port);
                 socket.Connect(op);
                 if (socket.Connected)
                 {
@@ -100,6 +101,25 @@ namespace WpfApp2
         {
             if (isok)
             {
+                try
+                {
+                    if (IP_text_box.Text.Length>0)
+                    {
+                        if (IP_text_box.Text == "NIHAD")
+                            IPAd = IPAddress.Loopback;
+                        else IPAd = IPAddress.Parse(IP_text_box.Text);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Enter IpAdress");
+                        return;
+                    }
+                }
+                catch (Exception)
+                {
+                    System.Windows.MessageBox.Show("Error IpAdress");
+                    return;
+                }
                 Task t1 = new Task(Connection1, TaskCreationOptions.LongRunning);
                 t1.Start();
                 isok = false;
