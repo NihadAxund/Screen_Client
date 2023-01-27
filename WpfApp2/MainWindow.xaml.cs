@@ -59,6 +59,7 @@ namespace WpfApp2
                     catch (Exception)
                     {
                        System.Windows.MessageBox.Show("Exit");
+                        isok = true;
                         this.Close();
                         //this.Dispatcher.BeginInvoke(new Action(() =>
                         //{
