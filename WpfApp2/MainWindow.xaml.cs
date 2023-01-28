@@ -77,7 +77,6 @@ namespace WpfApp2
         {
             try
             {
-                IPAd =  IPAddress.Loopback;
                 var port = 27009;
                 var op = new IPEndPoint(IPAd, port);
                 socket.Connect(op);
